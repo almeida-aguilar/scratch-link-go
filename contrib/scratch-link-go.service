@@ -1,0 +1,19 @@
+# systemd *user* service. Install with:
+#   mkdir -p ~/.config/systemd/user
+#   cp contrib/scratch-link-go.service ~/.config/systemd/user/
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now scratch-link-go
+#
+# The binary is expected at ~/.local/bin/scratch-link-go.
+# Logs: journalctl --user -u scratch-link-go -f
+[Unit]
+Description=Scratch Link (BLE) for Linux
+After=bluetooth.target
+
+[Service]
+ExecStart=%h/.local/bin/scratch-link-go
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target

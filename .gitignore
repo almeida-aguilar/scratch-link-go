@@ -1,0 +1,4 @@
+/scratch-link-go
+/dist/
+*.log
+!testdata/*.log
